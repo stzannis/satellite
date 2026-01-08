@@ -9,17 +9,16 @@
       padding: 0;
       width: 100%;
       height: 100%;
-      background: #ffffff; /* Λευκό background για όλη τη σελίδα */
+      background: #ffffff;
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden; /* Αποφεύγει τυχόν scrollbars */
+      overflow: hidden;
     }
 
     #satelliteContainer {
       width: 100%;
       height: 100%;
-      background: #ffffff;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -30,32 +29,30 @@
       max-height: 100%;
       object-fit: contain;
       display: block;
-      background: #ffffff;
     }
   </style>
 </head>
 <body>
 
   <div id="satelliteContainer">
-    <img id="radarGif" src="https://res.cloudinary.com/dnzyvy1zq/image/upload/satellite_greece_latest.gif" alt="Satellite GIF">
+    <img id="satelliteImg" src="https://res.cloudinary.com/dnzyvy1zq/image/upload/satellite_greece_latest.gif" alt="Satellite GIF">
   </div>
 
   <script>
-    const radarImg = document.getElementById("satelliteGif");
-    const baseUrl = "https://res.cloudinary.com/dnzyvy1zq/image/upload/satellite_greece_latest.gif.gif";
+    const imgElement = document.getElementById("satelliteImg");
+    const baseUrl = "https://res.cloudinary.com/dnzyvy1zq/image/upload/satellite_greece_latest.gif";
 
-    // Συνάρτηση που ανανεώνει την εικόνα
-    function updateSattelite() {
-      // Προσθέτουμε το timestamp για να παρακάμψουμε την cache
-      satelliteImg.src = baseUrl + "?v=" + Date.now();
+    function updateSatellite() {
+      // Προσθήκη timestamp για αποφυγή cache
+      imgElement.src = baseUrl + "?v=" + Date.now();
       console.log("Satellite updated at: " + new Date().toLocaleTimeString());
     }
 
-    // 1. Άμεση εκτέλεση με το που φορτώνει το script
+    // 1. Ανανέωση κάθε φορά που φορτώνει η σελίδα
     updateSatellite();
 
-    // 2. Επαναλαμβανόμενη εκτέλεση κάθε 150 δευτερόλεπτα
-    setInterval(updateSattelite, 150000); 
+    // 2. Επαναλαμβανόμενη ανανέωση κάθε 150 δευτερόλεπτα (2.5 λεπτά)
+    setInterval(updateSatellite, 150000); 
   </script>
 
 </body>
