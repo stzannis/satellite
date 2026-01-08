@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <title>Radar Animation</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #ffffff; /* Λευκό background για όλη τη σελίδα */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden; /* Αποφεύγει τυχόν scrollbars */
+    }
+
+    #radarContainer {
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+      background: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="radarContainer">
+    <img id="radarGif" src="https://res.cloudinary.com/dnzyvy1zq/image/upload/radar_izm_animation.gif" alt="Radar GIF">
+  </div>
+
+  <script>
+    const radarImg = document.getElementById("radarGif");
+    const baseUrl = "https://res.cloudinary.com/dnzyvy1zq/image/upload/radar_izm_animation.gif";
+
+    // Συνάρτηση που ανανεώνει την εικόνα
+    function updateRadar() {
+      // Προσθέτουμε το timestamp για να παρακάμψουμε την cache
+      radarImg.src = baseUrl + "?v=" + Date.now();
+      console.log("Radar updated at: " + new Date().toLocaleTimeString());
+    }
+
+    // 1. Άμεση εκτέλεση με το που φορτώνει το script
+    updateRadar();
+
+    // 2. Επαναλαμβανόμενη εκτέλεση κάθε 150 δευτερόλεπτα
+    setInterval(updateRadar, 150000); 
+  </script>
+
+</body>
+</html>
